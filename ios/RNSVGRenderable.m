@@ -169,7 +169,7 @@ UInt32 saturate(CGFloat value) {
     // This needs to be painted on a layer before being composited.
     CGContextSaveGState(context);
     CGContextConcatCTM(context, self.matrix);
-    CGContextConcatCTM(context, self.transform);
+    CGContextConcatCTM(context, self.transforms);
     CGContextSetAlpha(context, self.opacity);
 
     [self beginTransparencyLayer:context];
@@ -296,9 +296,23 @@ UInt32 saturate(CGFloat value) {
     }
 
     const CGRect pathBounding = CGPathGetBoundingBox(self.path);
-    const CGAffineTransform svgToClientTransform = CGAffineTransformConcat(CGContextGetCTM(context), self.svgView.invInitialCTM);
-    self.clientRect = CGRectApplyAffineTransform(pathBounding, svgToClientTransform);
-    self.bounds = self.clientRect;
+
+    CGAffineTransform current = CGContextGetCTM(context);
+    CGAffineTransform svgToClientTransform = CGAffineTransformConcat(current, self.svgView.invInitialCTM);
+    CGRect clientRect = CGRectApplyAffineTransform(pathBounding, svgToClientTransform);
+
+    self.clientRect = clientRect;
+
+    CGAffineTransform vbmatrix = self.svgView.getViewBoxTransform;
+    CGAffineTransform matrix = CGAffineTransformConcat(self.matrix, vbmatrix);
+
+    CGRect bounds = CGRectMake(0, 0, CGRectGetWidth(clientRect), CGRectGetHeight(clientRect));
+    CGPoint mid = CGPointMake(CGRectGetMidX(pathBounding), CGRectGetMidY(pathBounding));
+    CGPoint center = CGPointApplyAffineTransform(mid, matrix);
+
+    self.bounds = bounds;
+    self.center = center;
+    self.frame = clientRect;
 
     CGPathDrawingMode mode = kCGPathStroke;
     BOOL fillColor = NO;
