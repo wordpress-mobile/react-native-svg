@@ -36,7 +36,6 @@ repositories {
     google()
     jcenter()
     maven {
-        // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
         url "https://dl.bintray.com/wordpress-mobile/react-native-mirror/"
     }
 }
