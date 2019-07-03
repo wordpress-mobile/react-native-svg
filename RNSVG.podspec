@@ -13,5 +13,10 @@ Pod::Spec.new do |s|
   s.source_files     = 'ios/**/*.{h,m}'
   s.requires_arc     = true
   s.platforms        = { :ios => "8.0", :tvos => "9.2" }
-  s.dependency         'React'  
+  s.dependency         'React-Core'
+  s.dependency         'React-RCTImage'
+
+  # This updates the outdated <React/RCTImageLoader.h> import to use the RCTImage namespace
+  # It can be removed once https://github.com/facebook/react-native/issues/25349 is fixed
+  s.prepare_command  = 'sed -i "" "s/React\/RCTImageLoader.h/RCTImage\/RCTImageLoader.h/g" ios/Elements/RNSVGImage.m'
 end
