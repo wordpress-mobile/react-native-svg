@@ -36,6 +36,15 @@
     cachedAdvance = NAN;
 }
 
+- (void)setInlineSize:(RNSVGLength *)inlineSize
+{
+    if ([inlineSize isEqualTo:_inlineSize]) {
+        return;
+    }
+    [self invalidate];
+    _inlineSize = inlineSize;
+}
+
 - (void)setTextLength:(RNSVGLength *)textLength
 {
     if ([textLength isEqualTo:_textLength]) {
@@ -119,10 +128,12 @@
 
 - (void)renderLayerTo:(CGContextRef)context rect:(CGRect)rect
 {
-    [self clip:context];
     CGContextSaveGState(context);
+    [self clip:context];
     [self setupGlyphContext:context];
-    [self renderGroupTo:context rect:rect];
+    [self pushGlyphContext];
+    [super renderGroupTo:context rect:rect];
+    [self popGlyphContext];
     CGContextRestoreGState(context);
 }
 
@@ -264,7 +275,8 @@
     for (NSInteger i = [font count] - 1; i >= 0; i--) {
         RNSVGFontData* fontData = [font objectAtIndex:i];
         if (![parent isKindOfClass:[RNSVGText class]] ||
-            fontData->textAnchor == RNSVGTextAnchorStart) {
+            fontData->textAnchor == RNSVGTextAnchorStart ||
+            node.positionX != nil) {
             return node;
         }
         node = (RNSVGText*) parent;
