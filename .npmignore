@@ -3,7 +3,9 @@ node_modules/
 Example/
 experimental/
 android/build/
-screenShoots/
+screenshots/
+idl/
+flow-typed/
 
 # OSX
 #
