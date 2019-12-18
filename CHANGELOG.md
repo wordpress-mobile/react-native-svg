@@ -1,3 +1,67 @@
+## [9.13.6](https://github.com/react-native-community/react-native-svg/compare/v9.13.5...v9.13.6) (2019-12-10)
+
+
+### Bug Fixes
+
+* **android:** better npm ignores ([7bc717b](https://github.com/react-native-community/react-native-svg/commit/7bc717bfd533041e2a2dcd06f0c403a90b2bc138))
+
+## [9.13.5](https://github.com/react-native-community/react-native-svg/compare/v9.13.4...v9.13.5) (2019-12-09)
+
+
+### Bug Fixes
+
+* **android:** deprecation warning in TSpanView ([6035d2d](https://github.com/react-native-community/react-native-svg/commit/6035d2df137be94c144135ede1e8f70934e1439a))
+
+## [9.13.4](https://github.com/react-native-community/react-native-svg/compare/v9.13.3...v9.13.4) (2019-12-09)
+
+
+### Bug Fixes
+
+* initialize PathView with empty path ([45192bd](https://github.com/react-native-community/react-native-svg/commit/45192bd0864198ffe2573f404974fc3d17a2ec93))
+* **ios:** Fix image size when calling getDataURL with bounds. fixes [#855](https://github.com/react-native-community/react-native-svg/issues/855) ([45b0859](https://github.com/react-native-community/react-native-svg/commit/45b0859b7f4fa0ee8c515b4e11f136ed3783c2e6))
+
+## [9.13.3](https://github.com/react-native-community/react-native-svg/compare/v9.13.2...v9.13.3) (2019-10-25)
+
+
+### Bug Fixes
+
+* **android:** Image onPress [#1170](https://github.com/react-native-community/react-native-svg/issues/1170) ([5c967b7](https://github.com/react-native-community/react-native-svg/commit/5c967b7c6992246ebd602e9a86d2544f0662ce10))
+
+## [9.13.2](https://github.com/react-native-community/react-native-svg/compare/v9.13.1...v9.13.2) (2019-10-23)
+
+
+### Bug Fixes
+
+* make css-select and css-tree dependencies instead of peers ([957914d](https://github.com/react-native-community/react-native-svg/commit/957914d59b27e22121d13f13cb54a051b893b446)), closes [#1166](https://github.com/react-native-community/react-native-svg/issues/1166)
+
+## [9.13.1](https://github.com/react-native-community/react-native-svg/compare/v9.13.0...v9.13.1) (2019-10-23)
+
+
+### Bug Fixes
+
+* update flow types ([a50a856](https://github.com/react-native-community/react-native-svg/commit/a50a85671ea94e616eff761346875701f95d90ec))
+
+# [9.13.0](https://github.com/react-native-community/react-native-svg/compare/v9.12.0...v9.13.0) (2019-10-23)
+
+
+### Bug Fixes
+
+* camelCase css from style elements ([9ee5a28](https://github.com/react-native-community/react-native-svg/commit/9ee5a28b37edf403c503aed4f37edbaebe201eb0))
+* don't overwrite inline styles when inlining style elements ([6e1d825](https://github.com/react-native-community/react-native-svg/commit/6e1d8257a4b42b9888a6374ae203f07a932ca96f))
+* handle basic css media query selectors ([168ee25](https://github.com/react-native-community/react-native-svg/commit/168ee25ee4b193d85757e01b20840baf54872cfc))
+* handle style elements with CDATA ([b3fca84](https://github.com/react-native-community/react-native-svg/commit/b3fca84fb1b9091246310270d64dcef730ee05a9))
+* improve style element inlining, support more selectors and optimize ([8c9de72](https://github.com/react-native-community/react-native-svg/commit/8c9de72bda2a4e00efb1747f7c8e922fac92e194))
+* improve types for extractTransform ([a37ebbb](https://github.com/react-native-community/react-native-svg/commit/a37ebbbb1559b337b58327f79819c494029597fa))
+* only compute selector specificity once per selector ([9f53e31](https://github.com/react-native-community/react-native-svg/commit/9f53e31b24c940052a8d25671f92074194856f05))
+* types for css support ([c969159](https://github.com/react-native-community/react-native-svg/commit/c96915923e784607b14b7f437ae4dd58c31bde36))
+* use correct import in test ([a57963e](https://github.com/react-native-community/react-native-svg/commit/a57963eb4d3ec0c1645bf4251cf2b54507441532))
+
+
+### Features
+
+* implement experiment to inline css from style elements ([5f3852b](https://github.com/react-native-community/react-native-svg/commit/5f3852bf9cb41e79d50a4fcb800fdd7ba895f023))
+* implement SvgWithCss and SvgWithCssUri with Animated support ([6fb8dd5](https://github.com/react-native-community/react-native-svg/commit/6fb8dd53dba5af19ffc8f686a6310182fca87fd3))
+
 # [9.12.0](https://github.com/react-native-community/react-native-svg/compare/v9.11.1...v9.12.0) (2019-10-19)
 
 
