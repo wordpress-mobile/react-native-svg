@@ -1,16 +1,21 @@
-def safeExtGet(prop, fallback) {
-    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
-}
-
 buildscript {
-    repositories {
-        google()
-        jcenter()
+    ext.safeExtGet = {prop, fallback ->
+        rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
     }
-
-    dependencies {
-        //noinspection GradleDependency
-        classpath rootProject.ext.has('gradleBuildTools') ? rootProject.ext.get('gradleBuildTools') : 'com.android.tools.build:gradle:3.3.0'
+    
+    // The Android Gradle plugin is only required when opening the android folder stand-alone.
+    // This avoids unnecessary downloads and potential conflicts when the library is included as a
+    // module dependency in an application project.
+    if (project == rootProject) {
+        repositories {
+            google()
+            jcenter()
+        }
+        
+        dependencies {
+            //noinspection GradleDependency
+            classpath("com.android.tools.build:gradle:3.5.1")
+        }
     }
 }
 
@@ -24,7 +29,7 @@ android {
     defaultConfig {
         minSdkVersion safeExtGet('minSdkVersion', 16)
         //noinspection OldTargetApi
-        targetSdkVersion safeExtGet('targetSdkVersion', 27)
+        targetSdkVersion safeExtGet('targetSdkVersion', 28)
     }
     lintOptions {
         abortOnError false
@@ -49,9 +54,9 @@ repositories {
 dependencies {
     if (project == rootProject) {
         // If this is the root project (e.g. Jitpack), specify a version
-        implementation 'com.facebook.react:react-native:0.59.0'
+        implementation 'com.facebook.react:react-native:0.61.2'
     } else {
         //noinspection GradleDynamicVersion
-        implementation 'com.facebook.react:react-native:+'
+        implementation "com.facebook.react:react-native:${safeExtGet('reactnativeVersion', '+')}"
     }
 }
